@@ -1,21 +1,90 @@
-REPOSITORY          TAG       IMAGE ID       CREATED        SIZE
-flask-guide-web     latest    5722e2e0889e   5 months ago   187MB
-flask-guide-guide   latest    6b0fce60355d   5 months ago   1.02GB
-<none>              <none>    a3d17225106b   5 months ago   1.02GB
-<none>              <none>    3e46fd2f99da   5 months ago   311MB
-<none>              <none>    e9208ecf748f   5 months ago   261MB
-<none>              <none>    21bdc02fc225   5 months ago   187MB
-bitnami/kubectl     latest    05c000d7bc46   5 months ago   220MB
-postgres            alpine    696ffaadb338   5 months ago   237MB
-nginx               latest    eb4a57159180   5 months ago   187MB
-guide_app           v0.1      681ad6b668cf   5 months ago   947MB
-my_flask_app        v0.1      681ad6b668cf   5 months ago   947MB
-<none>              <none>    82a7f037cdab   5 months ago   947MB
-<none>              <none>    df8d6578191c   5 months ago   920MB
-<none>              <none>    4d92a26e8bb2   5 months ago   977MB
-<none>              <none>    f9fc986ce1c6   5 months ago   963MB
-<none>              <none>    872a60f191e6   5 months ago   920MB
-python              latest    86cd43f66f4e   5 months ago   920MB
-ubuntu              latest    99284ca6cea0   5 months ago   77.8MB
-ubuntu              18.04     f9a80a55f492   6 months ago   63.2MB
-hello-world         latest    feb5d9fea6a5   2 years ago    13.3kB
+[
+    {
+        "Id": "sha256:44a55e21e2244f90170526f3011f3c5fdbf9223ecd0079af8e3a275c9080168b",
+        "RepoTags": [
+            "ievengar/ubuntu-tmp-file:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:f9a80a55f492e823bf5d51f1bd5f87ea3eed1cb31788686aa99a2fb61a27af6a",
+        "Comment": "",
+        "Created": "2024-01-11T22:18:55.738303073Z",
+        "Container": "33e4301942d1db30b30d8dd35e0e201e4531a37ff3736b1a0423fca674f104f1",
+        "ContainerConfig": {
+            "Hostname": "33e4301942d1",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "ubuntu:18.04",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "18.04"
+            }
+        },
+        "DockerVersion": "24.0.7",
+        "Author": "",
+        "Config": {
+            "Hostname": "33e4301942d1",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "ubuntu:18.04",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "18.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 63156566,
+        "VirtualSize": 63156566,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/19438ddb6bb1cea32db9ade564320464b01878abe0b5c8d0945a5fc67c6c9baa/diff",
+                "MergedDir": "/var/lib/docker/overlay2/2274327a2da5079fda36298e76116a6772693e27926e8df3e726ff93c7f77f6f/merged",
+                "UpperDir": "/var/lib/docker/overlay2/2274327a2da5079fda36298e76116a6772693e27926e8df3e726ff93c7f77f6f/diff",
+                "WorkDir": "/var/lib/docker/overlay2/2274327a2da5079fda36298e76116a6772693e27926e8df3e726ff93c7f77f6f/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:548a79621a426b4eb077c926eabac5a8620c454fb230640253e1b44dc7dd7562",
+                "sha256:caffb8da9d4c1d7a015a10609a3be88417e78df98e4f792cac4fd5cb5056c4f3"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2024-01-11T22:18:55.779707116Z"
+        }
+    }
+]
