@@ -1,0 +1,21 @@
+REPOSITORY          TAG       IMAGE ID       CREATED        SIZE
+flask-guide-web     latest    5722e2e0889e   5 months ago   187MB
+flask-guide-guide   latest    6b0fce60355d   5 months ago   1.02GB
+<none>              <none>    a3d17225106b   5 months ago   1.02GB
+<none>              <none>    3e46fd2f99da   5 months ago   311MB
+<none>              <none>    e9208ecf748f   5 months ago   261MB
+<none>              <none>    21bdc02fc225   5 months ago   187MB
+bitnami/kubectl     latest    05c000d7bc46   5 months ago   220MB
+postgres            alpine    696ffaadb338   5 months ago   237MB
+nginx               latest    eb4a57159180   5 months ago   187MB
+guide_app           v0.1      681ad6b668cf   5 months ago   947MB
+my_flask_app        v0.1      681ad6b668cf   5 months ago   947MB
+<none>              <none>    82a7f037cdab   5 months ago   947MB
+<none>              <none>    df8d6578191c   5 months ago   920MB
+<none>              <none>    4d92a26e8bb2   5 months ago   977MB
+<none>              <none>    f9fc986ce1c6   5 months ago   963MB
+<none>              <none>    872a60f191e6   5 months ago   920MB
+python              latest    86cd43f66f4e   5 months ago   920MB
+ubuntu              latest    99284ca6cea0   5 months ago   77.8MB
+ubuntu              18.04     f9a80a55f492   6 months ago   63.2MB
+hello-world         latest    feb5d9fea6a5   2 years ago    13.3kB
