@@ -1,0 +1,4 @@
+REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+ievengar/ubuntu-tmp-file   latest    44a55e21e224   2 minutes ago   63.2MB
+ubuntu                     18.04     f9a80a55f492   7 months ago    63.2MB
+hello-world                latest    d2c94e258dcb   8 months ago    13.3kB
