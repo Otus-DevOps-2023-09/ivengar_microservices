@@ -16,6 +16,8 @@ docker rmi # удаляет образ
 docker info # информация о работоспособности клиент-сервера
 docker inventori # Полная информация о онтейнере
 
+ДЗ 13 / Docker под капотом.
+
 2. Удалени образов:
 docker ps -a
 docker stop $(docker ps -q)
@@ -53,3 +55,27 @@ docker run --name reddit -d -p 9292:9292 ivengar/otus-reddit:1.0
 
 6. docker-machine rm docker-host
 yc compute instance delete docker-host
+
+ДЗ 14 / Микросервисы
+1.
+docker pull mongo:4
+docker build -t ivengar/post:1.0 ./post-py
+docker build -t ivengar/comment:1.0 ./comment
+docker build -t ivengar/ui:1.0 ./ui
+2.
+docker network create reddit
+docker run -d --network=reddit --network-alias=post_db --network-alias=comment_db mongo:4
+docker run -d --network=reddit --network-alias=post ivengar/post:1.0
+docker run -d --network=reddit --network-alias=comment ivengar/comment:1.0
+docker run -d --network=reddit -p 9292:9292 ivengar/ui:1.0
+
+http://51.250.88.216:9292/
+3.
+docker run --rm -i hadolint/hadolint < Dockerfile
+4.
+docker run -d --network=reddit --network-alias=post_db --network-alias=comment_db mongo:4
+docker run -d --network=reddit --network-alias=post ivengar/post:2.0
+docker run -d --network=reddit --network-alias=comment ivengar/comment:1.0
+docker run -d --network=reddit -p 9292:9292 ivengar/ui:2.0
+
+http://51.250.88.216:9292/
