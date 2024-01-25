@@ -6,7 +6,7 @@ services:
     hostname: 'gitlab.example.com'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url "http://51.250.94.132"
+        external_url "http://51.250.87.5"
         #registry_external_url "https://registry.example.com"
         #mattermost_external_url "https://mattermost.example.com"
     ports:
