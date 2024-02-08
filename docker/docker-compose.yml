@@ -1,0 +1,92 @@
+version: '3.3'
+services:
+  post_db:
+    image: mongo:4
+    volumes:
+      - post_db:/data/db
+    networks:
+      back_net:
+        aliases:
+          - post_db
+          - comment_db
+  ui:
+    build: ./ui
+    image: ${USERNAME}/ui:${VERS}
+    ports:
+      - ${UI_PORT}:${UI_PORT}/tcp
+    networks:
+      - front_net
+  post:
+    build: ./post-py
+    image: ${USERNAME}/post:${VERS}
+    networks:
+      back_net:
+        aliases:
+          - post
+      front_net:
+        aliases:
+          - post
+  comment:
+    build: ./comment
+    image: ${USERNAME}/comment:${VERS}
+    networks:
+      back_net:
+        aliases:
+          - comment
+      front_net:
+        aliases:
+          - comment
+
+  prometheus:
+    image: ${USERNAME}/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command: # Передаем доп параметры в командной строке
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d' # Задаем время хранения метрик в 1 день
+    networks:
+        back_net:
+          aliases:
+            - prom
+        front_net:
+          aliases:
+            - prom
+
+  node-exporter:
+    image: prom/node-exporter:v0.15.2
+    user: root
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+    networks:
+        back_net:
+          aliases:
+            - nodexp
+        front_net:
+          aliases:
+            - nodexp
+
+volumes:
+  post_db:
+  prometheus_data:
+
+networks:
+  back_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.0.2.0/24
+  front_net:
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.0.1.0/24
