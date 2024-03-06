@@ -393,3 +393,39 @@ Then you can join any number of worker nodes by running the following on each as
 Проверяем
 
     kubectl get pods
+
+добавил terraform
+
+ДЗ 19 // Применение системы логирования в инфраструктуре на основе Docker
+
+создал тачку:
+
+yc compute instance create \
+  --name logging \
+  --zone ru-central1-a \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1804-lts,size=15 \
+   --memory 4 \
+  --ssh-key ~/.ssh/id_rsa.pub
+
+docker-machine create \
+  --driver generic \
+  --generic-ip-address=84.201.159.223 \
+  --generic-ssh-user yc-user \
+  --generic-ssh-key ~/.ssh/id_rsa \
+  logging
+
+
+eval $(docker-machine env logging)
+eval $(docker-machine env --unset)
+
+docker exec -it $(docker ps -q)
+
+вот так запустить кибану:
+eval $(docker-machine env logging)
+cd ~/gith/ivengar_microservices/logging/fluentd/ && docker build -t ivengar/fluentd .
+cd ~/gith/ivengar_microservices/src && docker-compose -f docker-compose-logging.yml up -d fluentd
+
+zipkin в докер-машин не запустился, сделал на основном.
+
+основные файлы в ~/gith/ivengar_microservices/src

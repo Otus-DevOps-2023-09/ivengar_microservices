@@ -12,22 +12,13 @@ services:
   ui:
     build: ./ui
     image: ${USERNAME}/ui:${VERS}
-    environment:
-      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     ports:
       - ${UI_PORT}:${UI_PORT}/tcp
     networks:
       - front_net
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: 84.201.159.223:24224
-        tag: service.ui
   post:
     build: ./post-py
     image: ${USERNAME}/post:${VERS}
-    environment:
-      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     networks:
       back_net:
         aliases:
@@ -38,13 +29,11 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: 84.201.159.223:24224
+        fluentd-address: 158.160.53.254:24224
         tag: service.post
   comment:
     build: ./comment
     image: ${USERNAME}/comment:${VERS}
-    environment:
-      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     networks:
       back_net:
         aliases:
