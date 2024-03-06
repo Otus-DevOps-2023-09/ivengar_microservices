@@ -6,6 +6,14 @@ services:
       - "24224:24224"
       - "24224:24224/udp"
 
+  zipkin:
+    image: openzipkin/zipkin:2.21.0
+    ports:
+      - "9411:9411"
+    networks:
+      - front_net
+      - back_net
+
   elasticsearch:
     image: elasticsearch:7.4.0
     environment:
@@ -22,3 +30,7 @@ services:
     image: kibana:7.4.0
     ports:
       - "5601:5601"
+
+networks:
+  back_net:
+  front_net:
