@@ -429,3 +429,41 @@ cd ~/gith/ivengar_microservices/src && docker-compose -f docker-compose-logging.
 zipkin в докер-машин не запустился, сделал на основном.
 
 основные файлы в ~/gith/ivengar_microservices/src
+
+
+
+ДЗ 20 // Основные модели безопасности и контроллеры в Kubernetes
+
+
+minikube start --kubernetes-version=v1.19.7
+minikube status
+
+kubeclt config current-context
+kubectl config get-contexts
+
+kubectl get pods
+kubectl get deployment
+
+kubectl apply -f ./kubernetes/reddit
+
+
+kubectl port-forward ui-5db787d674-gbk7w 9292:9292
+
+minikube service list (-p minikube2)
+
+minikube addons list
+
+kubectl get all -n kube-system --selector k8s-app=kubernetes-dashboard
+
+Если упал или ошибка можно удалить и пересоздать
+minikube delete --profile=minikube2
+
+minikube service ui -n dev
+
+yc managed-kubernetes cluster get-credentials master-k8s --external
+kubectl config current-context
+kubectl apply -f ./kubernetes/reddit/dev-namespace.yml
+kubectl apply -f ./kubernetes/reddit/ -n dev
+
+kubectl get nodes -o wide
+kubectl describe service ui -n dev | grep NodePort
