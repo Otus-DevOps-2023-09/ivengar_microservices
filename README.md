@@ -467,3 +467,94 @@ kubectl apply -f ./kubernetes/reddit/ -n dev
 
 kubectl get nodes -o wide
 kubectl describe service ui -n dev | grep NodePort
+
+ДЗ 21 // Ingress-контроллеры и сервисы в Kubernetes
+
+#создание миникуб:
+minikube start --kubernetes-version=v1.19.7
+minikube start --kubernetes-version=v1.25
+minikube status
+
+#проверки:
+kubeclt config current-context
+kubectl config get-contexts
+
+kubectl config current-context
+
+kubectl get nodes
+kubectl get pods -n dev
+kubectl get deployment
+
+minikube services list
+minikube addons list
+
+#использование созданного в яндекс облаке кластера:
+kubectl config use-context yc-master-k8s
+
+#примерение всех настроек и деплоймент приложений из файлов yml
+kubectl apply -f ./kubernetes/reddit
+kubectl apply -f ui-service.yml -n dev
+
+#Если упал или ошибка можно удалить и пересоздать
+minikube delete --profile=minikube2
+minikube delete
+
+minikube service ui -n dev
+
+#создание нового неймспейс:
+yc managed-kubernetes cluster get-credentials master-k8s --external --namespace dev
+kubectl config current-context
+kubectl apply -f ./kubernetes/reddit/dev-namespace.yml
+kubectl apply -f ./kubernetes/reddit/ -n dev
+
+#проверки
+kubectl get nodes -o wide
+kubectl describe service ui -n dev | grep NodePort
+
+kubectl port-forward service/reddit-loadbalancer 30000:9292 --namespace dev
+kubectl expose deployment ui --port=8765 --target-port=9376  --name=example-service --type=LoadBalancer -n dev
+
+kubectl describe services ui -n dev
+
+minikube service ui --url -n dev
+
+#доступы
+https://cloud.yandex.ru/ru/docs/resource-manager/operations/folder/set-access-bindings
+
+https://console.yandex.cloud/folders/b1g1a76j5hne2l7kcjt2/service-account/ajeirj655riqkq3fnqnv
+https://cloud.yandex.ru/ru/docs/resource-manager/operations/folder/set-access-bindings#access-to-sa
+
+#Установка подов для ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+
+#настройка ingress
+vim ui-ingress.yml
+kubectl apply -f ui-ingress.yml -n dev
+kubectl get ingress -n dev
+
+#настройка секретных ключей
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=158.160.155.85"
+kubectl create secret tls ui-ingress --key tls.key --cert tls.crt -n dev
+kubectl describe secret ui-ingress -n dev
+
+kubectl apply -f ui-ingress.yml -n dev
+
+# применеие разделения сети, создать файл mongo-network-policy.yml
+kubectl apply -f mongo-network-policy.yml -n dev
+
+#создать volume
+yc compute disk create \
+--name k8s \
+--size 4 \
+--description "disk for k8s"
+
+yc compute disk list
+
+PersitentVolume
+PersistentVolumeClaim
+
+изменить mongo-deployment.yml
+
+kubectl apply -f mongo-deployment.yml -n dev
+kubectl delete deploy mongo -n dev
+kubectl apply -f mongo-deployment.yml -n dev
