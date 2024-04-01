@@ -9,3 +9,8 @@ image:
 
 ingress:
         class: nginx
+
+postHost:
+postPort:
+commentHost:
+commentPort:

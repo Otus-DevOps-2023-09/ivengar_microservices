@@ -1,0 +1,31 @@
+---
+comment:
+  image:
+    repository: ivengar/comment
+    tag: "latest"
+  service:
+    internalPort: 9292
+    externalPort: 9292
+  databaseHost:
+
+post:
+  image:
+    repository: ivengar/post
+    tag: "latest"
+  service:
+    internalPort: 5000
+    externalPort: 5000
+  databaseHost:
+
+ui:
+  image:
+    repository: ivengar/ui
+    tag: "latest"
+  service:
+    internalPort: 9292
+    externalPort: 9292
+
+  postHost:
+  postPort:
+  commentHost:
+  commentPort:
